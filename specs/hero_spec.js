@@ -16,8 +16,8 @@ describe('Hero', function() {
   beforeEach(function() {
     hero1 = new Hero('Superman', 25, 'Pizza');
     hero2 = new Hero('Batman', 30, 'Pasta');
-    task1 = new Task(10, 15, 12);
-    task2 = new Task(8, 1200);
+    task1 = new Task('Kill people', 10, 15, 12, true);
+    task2 = new Task('Kill rats', 8, 1200, false);
     food1 = new Food('Pizza', 7);
     food2 = new Food('Lamb', 5);
 
@@ -39,7 +39,7 @@ describe('Hero', function() {
   });
 
   it('should be able to eat food', function() {
-    const actual = hero1.heroCanEat(food1);
+    const actual = hero1.heroEat(food1);
     const result = hero1.belly.length;
     assert.strictEqual(result, 1);
   });
@@ -54,6 +54,18 @@ describe('Hero', function() {
   it('should be able to say his/her name', function() {
     const actual = hero1.canSayName();
     assert.strictEqual(actual, `Hi, my name is Superman`);
+  });
+
+  it('should be able to increase health', function() {
+    hero1.heroEat(food2);
+    const actual = hero1.health;
+    assert.strictEqual(actual, 30);
+  });
+
+  it('should be able to increase health by 1.5', function() {
+    hero1.heroEat(food1);
+    const actual = hero1.health;
+    assert.strictEqual(actual, 35.5);
   });
 
 
