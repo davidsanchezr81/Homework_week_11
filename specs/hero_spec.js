@@ -16,11 +16,11 @@ describe('Hero', function() {
   beforeEach(function() {
     hero1 = new Hero('Superman', 25, 'Pizza', 20);
     hero2 = new Hero('Batman', 30, 'Pasta', 15);
-    task1 = new Task('Kill people', 10, 15, 12, true);
-    task2 = new Task('Kill rats', 8, 1200, false);
+    task1 = new Task('Kill people', 10, 29, 12, true);
+    task2 = new Task('Kill rats', 20, 10, 10, false);
+    task3 = new Task('Collect information', 12, 3, 15, true);
     food1 = new Food('Pizza', 7);
     food2 = new Food('Lamb', 5);
-
   });
 
   it('should have a name', function() {
@@ -49,6 +49,7 @@ describe('Hero', function() {
     const actual1 = hero1.heroCanGetTasks(task2);
     const result = hero1.tasks.length;
     assert.strictEqual(result, 2);
+    assert.deepStrictEqual(hero1.tasks,[task1, task2])
   });
 
   it('should be able to say his/her name', function() {
@@ -62,20 +63,37 @@ describe('Hero', function() {
     assert.strictEqual(actual, 30);
   });
 
-  it('should be able to increase health by 1.5', function() {
+  it('should be able to increase health by 1.5 because is favourite food', function() {
     hero1.heroEat(food1);
     const actual = hero1.health;
     assert.strictEqual(actual, 35.5);
   });
 
-  it('should be completed', function() {
-    const actual1 = hero2.isTaskAvailable(task2);
-    assert.strictEqual(actual1, `Task to be completed`);
-    const actual2 = task2.complete();
-    assert.strictEqual(actual2, `Task completed`);
-    const actual3 = hero2.isTaskAvailable(task2);
-    assert.strictEqual(actual3, `Task is already completed`);
+  it('can sort by reward', function () {
+    hero1.heroCanGetTasks(task1);
+    hero1.heroCanGetTasks(task2);
+    hero1.heroCanGetTasks(task3);
+    hero1.sortTaskByReward();
+    assert.deepStrictEqual(hero1.tasks, [task3, task1, task2])
   });
+
+  it('can sort by difficulty', function () {
+    hero1.heroCanGetTasks(task1);
+    hero1.heroCanGetTasks(task2);
+    hero1.heroCanGetTasks(task3);
+    hero1.sortTaskByDifficulty();
+    assert.deepStrictEqual(hero1.tasks, [task2, task3, task1])
+  });
+
+  it('can sort by urgency', function () {
+    hero1.heroCanGetTasks(task1);
+    hero1.heroCanGetTasks(task2);
+    hero1.heroCanGetTasks(task3);
+    hero1.sortTaskByUrgency();
+    assert.deepStrictEqual(hero1.tasks, [task1, task2, task3])
+  });
+
+
 
 
 

@@ -11,6 +11,7 @@ const Task = function(name, difficulty, urgency, reward) {
 Task.prototype.complete = function () {
   this.completion = true;
   return `Task completed`;
+  hero.wallet.push(this.reward)
 };
 
 Task.prototype.isTaskCompleted  = function () {
