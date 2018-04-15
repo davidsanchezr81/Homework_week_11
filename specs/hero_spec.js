@@ -19,8 +19,9 @@ describe('Hero', function() {
     task1 = new Task('Kill people', 10, 29, 12, true);
     task2 = new Task('Kill rats', 20, 10, 10, false);
     task3 = new Task('Collect information', 12, 3, 15, true);
-    food1 = new Food('Pizza', 7);
-    food2 = new Food('Lamb', 5);
+    food1 = new Food('Pizza', 7, false);
+    food2 = new Food('Lamb', 5, true);
+    food3 = new Food('Perro', 5, false);
   });
 
   it('should have a name', function() {
@@ -58,10 +59,18 @@ describe('Hero', function() {
   });
 
   it('should be able to increase health', function() {
-    hero1.heroEat(food2);
+    hero1.heroEat(food1);
     const actual = hero1.health;
-    assert.strictEqual(actual, 30);
+    assert.strictEqual(actual, 35.5);
   });
+
+  // it('should decrease health by poisoning', function() {
+  //   const actual = hero1.health;
+  //   assert.strictEqual(actual, 25);
+  //   hero1.heroEat(food3);
+  //   const actual1 = hero1.health;
+  //   assert.strictEqual(actual1, 30);
+  // });
 
   it('should be able to increase health by 1.5 because is favourite food', function() {
     hero1.heroEat(food1);

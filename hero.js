@@ -9,8 +9,12 @@ const Hero = function(name, health, favouriteFood, wallet) {
 
 
 Hero.prototype.heroEat = function (food) {
-  this.belly.push(food);
-  this.increaseHealth(food);
+  if(food.poisonity){
+    this.health += 5;
+  }else{
+    this.belly.push(food);
+    this.increaseHealth(food);
+  }
 };
 
 Hero.prototype.heroCanGetTasks = function (task) {
