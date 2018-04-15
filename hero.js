@@ -1,9 +1,10 @@
-const Hero = function(name, health, favouriteFood) {
+const Hero = function(name, health, favouriteFood, wallet) {
   this.name = name;
   this.health = health;
   this.favouriteFood = favouriteFood;
   this.belly = [];
   this.tasks = [];
+  this.wallet = wallet;
 };
 
 
@@ -24,7 +25,12 @@ Hero.prototype.increaseHealth = function (food) {
   }
 };
 
-
-
+Hero.prototype.isTaskAvailable = function (task) {
+  if(task.completion === false){
+    return `Task to be completed`;
+  }else{
+    return `Task is already completed`;
+  }
+};
 
 module.exports = Hero;

@@ -14,8 +14,8 @@ describe('Hero', function() {
 
 
   beforeEach(function() {
-    hero1 = new Hero('Superman', 25, 'Pizza');
-    hero2 = new Hero('Batman', 30, 'Pasta');
+    hero1 = new Hero('Superman', 25, 'Pizza', 20);
+    hero2 = new Hero('Batman', 30, 'Pasta', 15);
     task1 = new Task('Kill people', 10, 15, 12, true);
     task2 = new Task('Kill rats', 8, 1200, false);
     food1 = new Food('Pizza', 7);
@@ -66,6 +66,15 @@ describe('Hero', function() {
     hero1.heroEat(food1);
     const actual = hero1.health;
     assert.strictEqual(actual, 35.5);
+  });
+
+  it('should be completed', function() {
+    const actual1 = hero2.isTaskAvailable(task2);
+    assert.strictEqual(actual1, `Task to be completed`);
+    const actual2 = task2.complete();
+    assert.strictEqual(actual2, `Task completed`);
+    const actual3 = hero2.isTaskAvailable(task2);
+    assert.strictEqual(actual3, `Task is already completed`);
   });
 
 

@@ -3,18 +3,23 @@ const Task = function(name, difficulty, urgency, reward) {
   this.difficulty = difficulty;
   this.urgency = urgency;
   this.reward = reward;
-  this.completion = true;
+  this.completion = false;
 
 };
 
-// Task.prototype.taskCompleted  = function () {
-//   if(this.completion = false){
-//     this.completion = true;
-//     return `Task completed`
-//   }else{
-//     return `Task is already completed`
-//   }
-// };
+
+Task.prototype.complete = function () {
+  this.completion = true;
+  return `Task completed`;
+};
+
+Task.prototype.isTaskCompleted  = function () {
+  if(this.completion === false){
+    return `Task to be completed`;
+  }else{
+    return `Task is already completed`;
+  }
+};
 
 
 module.exports = Task;

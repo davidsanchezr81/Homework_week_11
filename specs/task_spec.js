@@ -33,15 +33,16 @@ describe('Task', function() {
     assert.strictEqual(actual, 12);
   });
 
-  // it('should be completed', function() {
-  //   const actual = task1.taskCompleted();
-  //   assert.strictEqual(actual, `Task is already completed`);
-  // });
-  //
-  // it('should be not completed', function() {
-  //   const actual1 = task2.taskCompleted();
-  //   assert.strictEqual(actual1, `Task completed`);
-  // });
+  it('should be completed', function() {
+    const actual1 = task2.isTaskCompleted();
+    assert.strictEqual(actual1, `Task to be completed`);
+    const actual2 = task2.complete();
+    assert.strictEqual(actual2, `Task completed`);
+    const actual3 = task2.isTaskCompleted();
+    assert.strictEqual(actual3, `Task is already completed`);
+  });
+
+
 
 
 
