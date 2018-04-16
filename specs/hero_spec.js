@@ -2,6 +2,7 @@ const assert = require('assert');
 const Hero = require('../hero.js');
 const Food = require('../food.js');
 const Task = require('../task.js');
+const Rat = require('../rat.js');
 
 describe('Hero', function() {
 
@@ -11,7 +12,7 @@ describe('Hero', function() {
   let task2;
   let food1;
   let food2;
-
+  let rat1;
 
   beforeEach(function() {
     hero1 = new Hero('Superman', 25, 'Pizza', 20);
@@ -19,9 +20,11 @@ describe('Hero', function() {
     task1 = new Task('Kill people', 10, 29, 12, true);
     task2 = new Task('Kill rats', 20, 10, 10, false);
     task3 = new Task('Collect information', 12, 3, 15, true);
-    food1 = new Food('Pizza', 7, false);
-    food2 = new Food('Lamb', 5, true);
-    food3 = new Food('Perro', 5, false);
+    food1 = new Food('Pizza', 7);
+    food2 = new Food('Lamb', 5);
+    rat1 = new Rat('Bruno', 2);
+
+    food3 = new Food('Perro', 5, true);
   });
 
   it('should have a name', function() {
@@ -64,13 +67,16 @@ describe('Hero', function() {
     assert.strictEqual(actual, 35.5);
   });
 
-  // it('should decrease health by poisoning', function() {
-  //   const actual = hero1.health;
-  //   assert.strictEqual(actual, 25);
-  //   hero1.heroEat(food3);
-  //   const actual1 = hero1.health;
-  //   assert.strictEqual(actual1, 30);
-  // });
+  it('should decrease health by poisoning', function() {
+    const actual = hero1.health;
+    assert.strictEqual(actual, 25);
+    rat1.touchFood(food2)
+    assert.strictEqual(food2.poisonity, true);
+    hero1.heroEat(food2);
+    assert.strictEqual(hero1.belly.length, 0);
+    const actual1 = hero1.health;
+    assert.strictEqual(actual1, 20);
+  });
 
   it('should be able to increase health by 1.5 because is favourite food', function() {
     hero1.heroEat(food1);

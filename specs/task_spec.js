@@ -42,8 +42,4 @@ describe('Task', function() {
     assert.strictEqual(actual3, `Task is already completed`);
   });
 
-
-
-
-
 });

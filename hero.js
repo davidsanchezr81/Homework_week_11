@@ -9,8 +9,8 @@ const Hero = function(name, health, favouriteFood, wallet) {
 
 
 Hero.prototype.heroEat = function (food) {
-  if(food.poisonity){
-    this.health += 5;
+  if(food.poisonity === true){
+    this.health -= 5;
   }else{
     this.belly.push(food);
     this.increaseHealth(food);

@@ -4,7 +4,7 @@ const Food = function(name, replenishmentValue) {
   this.poisonity = false;
 };
 
-Food.prototype.getPoisoned = function () {
+Food.prototype.getPoisoned = function (food) {
   food.poisonity = true;
 };
 
